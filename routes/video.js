@@ -9,7 +9,7 @@ module.exports = function(req, res) {
         const config        = require('../config');
         var getparams       = req.params.action;
 
-        const paths = '/mnt/chromeos/MyFiles/Downloads/clonner/minioppai/downloading/videos/'+getparams;
+        const paths = '/mnt/chromeos/MyFiles/Downloads/videos/'+getparams;
         // const stat = fs.statSync(path)
         // const fileSize = stat.size
         // const head = {
