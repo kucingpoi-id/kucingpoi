@@ -1,0 +1,416 @@
+
+<!Doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Jumbotron example · Bootstrap v5.1</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/jumbotron/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="###URL###/assets/css/bootstrap.min.css" rel="stylesheet" >
+<script src="###URL###/assets/js/bootstrap.min.js"></script>
+<script src="###URL###/assets/js/jquery.min.js"></script>
+
+    <style>
+		body {
+			background: #16151d;
+    		color: #333;
+            font-family: Prompt, sans-serif;
+		}
+
+
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      .thumbnail{
+          height: 240px;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+        .thumbnail{
+            height: 200px;
+        }
+      }
+      
+  .link-post {
+    color: #add4bd;
+  }
+  .link-post:hover {
+    cursor: pointer;
+    color: #2a81e5;
+  }
+
+  .tx-container {
+position: relative;
+text-align: center;
+color: white;
+font-size: 12px;
+
+}
+
+/* Top right text */
+.tx-top-right {
+position: absolute;
+top: 0px;
+right: 0px;
+background: rgba(19, 111, 209, 0.878);
+}
+
+/* Bottom left text */
+.tx-bottom-left {
+width: 100%;
+text-align: left;
+padding-left: 10px;
+padding-right: 40px;
+position: absolute;
+bottom: 0px;
+left: 0px;
+background: rgba(0,0,0,.8);
+}
+
+/* Bottom right text */
+.tx-bottom-right {
+position: absolute;
+bottom: 0px;
+right: 0px;
+padding-left: 3px;
+padding-right: 3px;
+background: rgba(19, 111, 209, 0.878);
+}
+
+*:hover > .tx-centered {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+display: block;
+
+padding: 15%;
+background: rgba(0,0,0,.8);
+background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDUxMS45OTkgNTExLjk5OSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTExLjk5OSA1MTEuOTk5OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8cGF0aCBzdHlsZT0iZmlsbDojN0JEOUJGOyIgZD0iTTQ1NC41MTYsMjM2LjI2NUw4Mi4xNTIsMy41MzhjLTcuMTc2LTQuNDg1LTE2LjIxOC00LjcyMS0yMy42MTctMC42MjENCgljLTcuMzk5LDQuMDk5LTExLjk5LDExLjg5NC0xMS45OSwyMC4zNTR2MjMyLjcyN3YyMzIuNzI3YzAsOC40Niw0LjU5MSwxNi4yNTQsMTEuOTkyLDIwLjM1NmMzLjUxNiwxLjk0OSw3LjQwMSwyLjkxNywxMS4yODEsMi45MTcNCgljNC4yODcsMCw4LjU2Ny0xLjE4NCwxMi4zMzUtMy41MzdsMzcyLjM2NC0yMzIuNzI2YzYuODA1LTQuMjUzLDEwLjkzOC0xMS43MTEsMTAuOTM4LTE5LjczNWMwLDAsMCwwLDAtMC4wMDINCglDNDY1LjQ1MywyNDcuOTc2LDQ2MS4zMTksMjQwLjUxOCw0NTQuNTE2LDIzNi4yNjV6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojNjZCNEJBOyIgZD0iTTU4LjUzNyw1MDkuMDgyYzMuNTE2LDEuOTQ5LDcuNDAxLDIuOTE3LDExLjI4MSwyLjkxN2M0LjI4NywwLDguNTY3LTEuMTg0LDEyLjMzNS0zLjUzNw0KCWwzNzIuMzY0LTIzMi43MjZjNi44MDUtNC4yNTMsMTAuOTM4LTExLjcxMSwxMC45MzgtMTkuNzM1di0wLjAwMkg0Ni41NDV2MjMyLjcyN0M0Ni41NDUsNDk3LjE4Nyw1MS4xMzYsNTA0Ljk4LDU4LjUzNyw1MDkuMDgyeiIvPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPC9zdmc+DQo=');
+background-size: 45% 45%;
+background-repeat: no-repeat;
+background-position: center; 
+background-position-x: 55%;
+content: "";
+}
+
+*:hover > .thumbnail {
+  -webkit-filter: brightness(.5);
+  filter: brightness(.5);
+}
+
+
+.star-ratings {
+  unicode-bidi: bidi-override;
+  font-weight: bold;
+  color: #ccc;
+  font-size: 20px;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.star-ratings .fill-ratings {
+  color: rgb(237, 184, 103);
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: block;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.star-ratings .fill-ratings span {
+  display: inline-block;
+}
+.star-ratings .empty-ratings {
+  padding: 0;
+  display: block;
+  z-index: 0;
+}
+
+
+.anime-genre-link:hover{
+    color: rgb(237, 184, 103) !important;
+}
+
+</style>
+<link rel="stylesheet" href="###URL###/assets/css/player.css">
+<script src="###URL###/assets/js/player.js"></script>
+<script>
+$(document).ready(function(){
+    var anime_token = "";
+    var anime_video = '';
+
+    var datavid = JSON.parse(anime_video);
+    var ovideo = `
+    <div class="w-100 text-center">
+      <video class="w-100" id="plyr-video" muted="muted" autoplay controls>
+        <source src="###URL###/w/${datavid.media}" type="video/mp4">
+        <!-- Captions are optional -->
+        <!-- <track kind="captions" label="English captions" src="/path/to/video-caption.vtt" srclang="en" default> -->
+      </video>
+    </div>
+    <div class="p-3">
+      <h5>${datavid.judul}</h5>
+      <div id="episode-list"></div>
+
+    </div>
+
+    `;
+
+    $("#detail-anime").append(ovideo + " ");
+
+    $.get("###URL###/cache/"+anime_token, function(result, status){
+        var data = JSON.parse(result);
+        $.each(data, function(o,episode){
+          if (episode.link != datavid.link) {
+            var epz = `<span class="row row-cols-2 pt-2">
+                  <a class="col col-10 text-decoration-none" href="###URL###/${episode.link}">${episode.judul}</a>
+                  <a class="col col-2" href="###URL###/${episode.link}">Watch</a>
+              </span>`;
+
+              $("#episode-list").append(epz + " ");
+
+          }
+        })
+        // console.log(data);  
+      })
+
+
+    // $.get("###URL###/cache/"+anime_token, function(result, status){
+    //     var data = result.data;
+    //     console.log(data);
+        
+    // })
+});
+
+</script>
+
+
+  </head>
+  <body>
+    
+<main>
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="###URL###/home">
+          <img 
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH5gMCCwE7RSXX4AAAD8pJREFUWMOt1mms51ddx/H3b9/++3b/d78zczvttB0KU8ZCK2uLpjqKkUgAH2A0xIRoTDRGI494ABofGBPFxGggiASDKEFMRJEQlra0VTrTaWe5M3f73+1/73/ffvs5Px80YNrpNHE5j8/55ZXP9/v7nqPwmtXdu4Gi6YrfP57zCoUo6LYHRr6MFCnN+97G/+fq7G/Qu/493NoKg8MteoctTK8EwE9+5HcB0F97aHi0A4pyMUvjv1BkGtnFyl+Z+cqXZv121Hrh3/Dqp6kurf+fcYcbP8Q0LUJhktP1Eor23nx9sa6Z7pczKQY/2ncHcNxto+nGOy3bfViRGYk/e9gf9t/sNeY/GQf+oLt5hZPWDRor9/3vYLu3MZQUUCg2Vtl49hvvHhwffyIM4ndN+l2VTHSllP/wo/3qHV/wZ2RRpOgyw7JddN2wsiT6reHe1medQm3NLdepL9/LoL3zP8YN2rtMO4cIISkvrDobT3/jt8NO+8tZMHsinysaapJo46PWmWFr+8dn7kgwbu+hWtZEhFP0xVModoEMld7erV84nr6cb6zf/zuX//ULV85ceCdf+fNP845L7yeTEj9KsA0VRdXRdAMRh1Cookz7KKrOX//h72OaOpbr4Hj5xdvPf/uT44Otj7q6rpteHtMr4uVLjI5biqYoP/bckaCKAkk6VDNFarpOliaomk6xuUomkscPN65+ub5yzwcV3XJ/9tI7KC+u67X5Rev6V/+I+XKeQmNBqS+fZTroE+7fYu7UeaWxek779d/8OIpuepbj/tztF5//Umf39q+ZlqXblTpuZQ7DNFFFgmk5Xdtx7p6ga1pkyKGhkCbB1FRMGxVQFRXTcmnvb52NRfZZx/OejqR7Lb75g/nhaGKfefxjBwM/SYPBYbmbthKnUGrruppee+rrc/l8zrPswl40aF/o7m09NjpueXnHwbI9LCeHZllE7T3C7RtpFvudTIi7A+1aE5mme1kUDNJRf07VDVIpiZMEw7Jprp5Bd1xvdLL3vjiK3jfs9Wi19lk9fZokCkgE6IZJzjU46XXZePlFzqyfIpfLUSjXyNIALUtJ/BGJjElVlSwKiKMIy3KmOdM8VHX97sDMtknTZFsLhlf87Rs/pbh5zGoD3baRZDilIp2jPY5aOxTLFQzTwnFdtjY2KFdr5At5iuUKWVbgsLVFzjVQFDg5OqS1vUltbp7F0+sEoxGmoiKikLDfITo+QMzGN3PrZ28rWXb3HrR/5lcod3Z9K1/4PnGA6ngY1QZmoYSTyzEe9NnfeQVXqc+TK1Y4feY0pqHRWFhCpjHdwx2C6RiZxuQcCy9fotpcxM6VODw4QEhBrlIFTSJ0jSgICbonaLXGt0ef+8zQefAn7g6cfuuLZKKP7G4GZtlBy+cwPA+ZCXrHbYaDAfMrpzHdEika49GIzWtXmJ9vIkWKpmnoqkI46dNcWGIymbB1a4Pd1hEZGrW5RY72D/CnIwwvj1UsouoKmiYyMnE9/+T7SU4O7g489/gvQ2UVpVAbK06R/q2r+MMOo9GIwWCA4+VIk5g4lVTmTxGFIbNZyKkHL6LrOp5rkct7aKrC6tkHKdQWGA8HzC2u4JYaRFFMmEjCVCEWGbP+CcGgi1cqRmL72pE42OahSx+7ew8C5B65hAKXp8e7Ay2W5cFgyElvSLlcoVipMZsMMQyDXKGAZRmcO3+efLHAYD8CNSNNEgxdoisp9cYcR7ubrJ4+QzAb05EBtbl5JpMJMkjRhEJqGRjzD/RK1eWWiCPg3+8OPG7dRCBQVPUwFMnQrDbK/ZFPY36Rxvwitpcn79cYdNtMO/tUSjkUEeF3WigiJAxDZBqTSYPxyT6WKlldrJHMBsSzGYurZ3AKVbrHR4wHfQzHxTA11GL52tLjH2qNT/aAT/zYo7wWGA6PGB3vkinKJRFO/041LG82C8kXyxRqTbrtA776lS9x5aX/IO+YvOeRt/Om++8nDmcMBn0M20VBkmFgaBLb8di+vcG3L7/McDxmeWmND3zgIyyfuY9h95hgNsXQJJkU/2RXV36JNIpTqbJ0z/nX78E4jnFrK4V8qf5xt1DxTOeV+WWaJpPjXf7xi5/hm9/5Osddn7MPPcK3XvguwwRyjVO4hQqq5aHYRXTHo9BcQzoVvv709/jm955h9Z63EOshf/O5P6Gzcx0NAVmG5RZwC5WHdcSDuqYCbzBmVFVBVeSyFMnDwXRMJiXJtIfwe+xvXmdrf4deN2F/t8vT33mRvfYRmwdbFJurlOYWsRwXXdPJlyrUl8/Smfnsdo7onUQ898wVrl1p0Z912dnaREl9NGIUMkSaLBqm9aTr2GS8wV2MTFEy6U76x8awd8L29SsMOsc4pTlqK/ei2SaKHtHv93nqme+SiICb166jqVAo12jUazTnquSLJUzL4aC1i2Gl6LrCc889S2v/NoajU19exy03kUIw7rUZdduIJFrXG+ua67l3/0nSJEaVIj8e9KzRYMDtG9e5+OhjRJMutqnzrnf+PNL0qc11yBddTi82OZtX8A9eRHeLmKog9odkacDsKKAihrzj4kXqjS32d/qsnqrx1jc/SSnvMOkfEUxH7LX2mF9cYDbqndOcvXwm0uFdgUmaoMMwiqLgpSsvuq6pkE47dDbbhEnG+VNL3Hvm90jVCK8whz4eEmx/n9HuZZxiA7txBlSTsLPJeDZkqSB54MKHkdUq3ZN9ZGRSL1YZHN4mno2Ik5RW64B+r8NDlotXW5JJEr1BidEwLPdw5odHi0sLXHj4IbLYR2YZSRRwsnUVzR9QVmyKgCYDrMoKyWxAEAQkWh7pzRFjM23fBlVDxhFOCFW9TD5L6Wy/xPB4j+HJAbqucf6BdTIJ3U73crl5apZE/w28I0GRgVdd6tlubnNt/eyDlXIRkUb4kyHMAnw/IN3ZoLl2L+gmZq6GbajsXv0BrWtTFn64i6mp7Az6FLyAh88tY5YXiIUkSVJG/S794yPcXA7TdlHJmF85jWI4SNW6+rW//JR4+NEn7g5UVJWXv/aZZOGBxzaQCZapk/pDFM1EpIJoOkDTDRTdfOXVbJcxik0aF97PN77w9xwcXKaupbxgNvnQr36U/MppZn7IbNQnQ0VRVaLZGFWRFCtVCo1lnHyJOc2Wim5F9UYdzcvdfVAf7BzgGj4o6hPh8Oirvd2Xc4ODLZIkxStV8SpNdNNCStBNC1U3yRfylJfO0en2+fyf/jG99hEf+8SnWb/3LOPjTbr7t0mTlEymGHaO3uEOx9s3COOY+lyTQnWO2tr9193q8iUpki1RWmep4rx+gqockQqFXLnx/MGN55/auX75p0uFHI2lNSw3h1NZxC5UkVlGJhJkOCWazZiNBugIzj/yKKPxlHLRw58MCUc9lExQKFXQ7Bxx4GM7DpV6g6P2Cbtb2+S7XTSn+M9rb3liu926idp5+e4JAjx7dZOFrIWi2x8MOpt/m/kDwy7W0Q0Tw8mDU8P3A5R4jBQp6A5Swmw64amnnsMPQt7z3ndRbcyhyJhJ9wDLMig1Vwn9gFmnRTTpEk37xInALC/9oLB43wdFGu6Vl8/RXFy7ew8CnCqmmPoyKKprmbo+6+wigRQDVbHQFJV8sYQIII4ifD9iNJ5ydHTC7Y2bJHHIzuoCkFEsFTGdPGoWIZIEfzwgCkLMwhxxEuPmXcor9x42H3p3e3y4RTrtvcpyB/Dg1hUAZonUHJ2Lqm4rbnUJkSbE0yGD/Zvodp7y6gM4lWWUSR/NyZiEB1i2yWOPPYKIQ/QsZjToUarWsfImuulw0trg+OazyDiksrxOYfF+TK+A6RaK/dZNBykSxXTeGFisN4mmY1S4IEX6i0mc4OZr+IMThBQYbokkmDDc38QsVMnXljA0gzWvxNLaOrPxgDSOUDUNVdPRDBNFUekf7TDt7qMpEqdcIc1geNKiOLeKU6iv6aa1nknxQ5nGr54qrwXu3rhMpVxCyOwPskx+KpiOUJUMmcbEwRTSGAWIwxmhP0U1Xax8DcsrkSvXUTWNNElIopD+ySFR4EMyQ/gjLMsgjiKmgzaa7eHkCqBZ1JbPYrqFz2uG+RvAVFFV6kv33JngwcYLOIUimJYr/dnb/XGPaDYhTSK8YhlV1cgMhySaoZg5zEzFH/fwp1Mmwx6N5XsoNleQEgYHm3T2NpkGIUVbQ9cyYl0l11hDndrIJMQfp6hOmXA6RAjxYSdf+s9LZ970Z/+yt/H6CR7vbeDYDsCjk/7x1/xht6bpOsFkwGw0wHRcyrU5ksgH1SAc95j22oSJRDUcvJwLmSSTkAY+aeSjmDa6pqEgCYMpbnmOTKZM+m2mkzGG5VBbWKFQX6LcXLtseIUnMyHa4bjPwr1vfXWCUghUkZKSPSLiqBaHU3RNJ5z0yaQARWXUOcAwdFTdIotmpLMuwaALTgUZ5NB0A003QQoUVcFQJcgUIST9zgnbt26ycvY83fYRIo0p5GNkOEHJBFkmF5BiUSFrY75ym7zqsZBlGWrqk2WyoiAwdJ0kGBKMOogkIhj3iEOfcDoknvaJ4wDbK1Cda6IGXcJRlyyN8Yc9RBSgyJg0GCBFymzYxtIzzMwnDn000yWNIzQFdCePbnloqlbLpHybiiSNkzuBoJAZDqqqxU6uTK4yh6ZpKFmGP+4TDI9RdZNMpgSDIwYnhyhWDjNXpdhYJJWCKBYcHbSYjoeYrotuOkwnY/qdE0LfxzY14mkP28vjuA5epYHp5NA0jSSaqcj0YiBUw3Gt1xkzik40G5EZtqGoKgqvlCdXrmKlGSdbV5noBiLyEcGIVGR0DlsUKw2EVDA0hf2DA25vbPGABvmcgapbjId9NnePkUDdFSw6HuXCAgXvFOgmSZKSJgky8wmDoFlsrulJGCZ3AJUsIQoDNEUX/uCYcNxBCImIQ0ToUywVUUmYzHoIIZCZSnvjKtHSaWQS4pgKZSejVvbQs5hoNsYwDUhmgKQ3mBKNI5ZXl7F0sOqr9E8OObr9EkmSYtguZNLJVxf0JApfp8SZQDMMVIXjcNyhd7BNnAjSNEXTdUrNVWzHwbZtDMPC0KDoKhhiDMkMw7SoFl3OnmpS8EwsU8N1PeYX57l44QHW5jwMVTAb9slEhGFaGJqC51ok4Yz+/i00TW1KKQqqqt1Z4uDWM1TOPQqaEZFJ2T0+Ur1YYBBjWQ4yU9BMG5kmSFTcQgXXMdE0nSyTYHiIOCbLMqaTEbphYFkGbr5GrrKAoYE/aKObNkJAMO6hKIDhkokEMoGXL9qW49qapt4JtNcuoFkuqNogV66LQqGgdtt7KEhy+SKapqJmgjgKiMKIQm0BzXEwbJc0Chj1uszGY3r9AdNBhzRNUGWEm2nonoKVK2HYHkJmSEVH1U10t0gw2CVLu1SaK3ilRg4oadortP8C4j39AosR6h4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDMtMDJUMTE6MDE6NTErMDA6MDBH9lqlAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTAzLTAyVDExOjAxOjUxKzAwOjAwNqviGQAAAABJRU5ErkJggg=="
+          alt="" style="position: absolute;top:16px; ">
+          <span style="padding-left: 45px;">Poi</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link" href="###URL###/home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="###URL###/anime">Anime List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Popular</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Uncensored</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Season</a>
+            </li>
+          </ul>
+          <div class="d-flex text-white">
+            tester
+          </div>
+          <!-- <form class="d-flex"> -->
+            <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+            <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+          <!-- </form> -->
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="container py-4 mt-5">
+    <div class="row align-items-md-stretch g-3">
+      <div class="col-md-8">
+        <div class="h-100 py-3 text-white bg-dark rounded-3" id="detail-anime"></div>
+      </div>
+      <div class="col-md-4">
+        <div class="h-100 p-3 bg-dark text-white rounded-3">
+          <div class="col w-100">
+            <h4>List A-Z</h4>
+          </div>
+          <div class="row row-cols-6 row-cols-md-6 text-center" style="font-size: 14px;">
+            <hr class="col w-100 mb-3" />
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/A">A</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/B">B</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/C">C</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/D">D</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/E">E</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/F">F</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/G">G</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/H">H</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/I">I</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/J">J</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/K">K</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/L">L</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/M">M</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/N">N</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/O">O</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/P">P</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/Q">Q</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/R">R</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/S">S</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/T">T</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/U">U</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/V">V</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/W">W</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/X">X</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/Y">Y</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/Z">Z</a>
+            <hr class="col w-100 mt-3" />
+          </div>
+
+          <div class="col w-100 mt-5">
+            <h4>Genre</h4>
+          </div>
+          
+          <div class="row row-cols-2 row-cols-md-3" style="font-size: 14px;">
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/action" title="View all series in Action">Action</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/ahegao" title="View all series in Ahegao">Ahegao</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/anal" title="View all series in Anal">Anal</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/armpit" title="View all series in Armpit">Armpit</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/ashikoki" title="View all series in Ashikoki">Ashikoki</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/bdsm" title="View all series in BDSM">BDSM</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/big-oppai" title="View all series in Big Oppai">Big Oppai</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/blowjob" title="View all series in Blowjob">Blowjob</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/bondage" title="View all series in Bondage">Bondage</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/censored" title="View all series in Censored">Censored</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/cheating" title="View all series in Cheating">Cheating</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/chikan" title="View all series in Chikan">Chikan</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/comedy" title="View all series in Comedy">Comedy</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/cosplay" title="View all series in Cosplay">Cosplay</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/creampie" title="View all series in Creampie">Creampie</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/dark-skin" title="View all series in Dark Skin">Dark Skin</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/demons" title="View all series in Demons">Demons</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/doctor" title="View all series in Doctor">Doctor</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/domination" title="View all series in Domination">Domination</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/drama" title="View all series in Drama">Drama</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/ecchi" title="View all series in Ecchi">Ecchi</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/elf" title="View all series in Elf">Elf</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/exhibitionist" title="View all series in Exhibitionist">Exhibitionist</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/facial" title="View all series in Facial">Facial</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/fantasy" title="View all series in Fantasy">Fantasy</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/fellatio" title="View all series in Fellatio">Fellatio</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/femdom" title="View all series in Femdom">Femdom</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/fetish" title="View all series in Fetish">Fetish</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/footjob" title="View all series in Footjob">Footjob</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/forced" title="View all series in Forced">Forced</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/futanari" title="View all series in Futanari">Futanari</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/gangbang" title="View all series in Gangbang">Gangbang</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/group" title="View all series in Group">Group</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/harem" title="View all series in Harem">Harem</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/historical" title="View all series in Historical">Historical</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/housewife" title="View all series in Housewife">Housewife</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/humiliation" title="View all series in Humiliation">Humiliation</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/idol" title="View all series in Idol">Idol</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/incest" title="View all series in Incest">Incest</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/josei" title="View all series in Josei">Josei</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/kemonomimi" title="View all series in Kemonomimi">Kemonomimi</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/lactation" title="View all series in Lactation">Lactation</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/lingerie" title="View all series in Lingerie">Lingerie</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/magic" title="View all series in Magic">Magic</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/maid" title="View all series in Maid">Maid</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/martial-arts" title="View all series in Martial Arts">Martial Arts</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/masturbation" title="View all series in Masturbation">Masturbation</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/mecha" title="View all series in Mecha">Mecha</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/megane" title="View all series in Megane">Megane</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/milf" title="View all series in MILF">MILF</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/mizugi" title="View all series in Mizugi">Mizugi</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/monster" title="View all series in Monster">Monster</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/mystery" title="View all series in Mystery">Mystery</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/neko" title="View all series in Neko">Neko</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/netorare" title="View all series in Netorare">Netorare</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/nurse" title="View all series in Nurse">Nurse</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/office" title="View all series in Office">Office</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/onsen" title="View all series in Onsen">Onsen</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/oppai" title="View all series in Oppai">Oppai</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/oral" title="View all series in Oral">Oral</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/osananajimi" title="View all series in Osananajimi">Osananajimi</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/paizuri" title="View all series in Paizuri">Paizuri</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/pantyhose" title="View all series in Pantyhose">Pantyhose</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/pantyhouse" title="View all series in Pantyhouse">Pantyhouse</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/parody" title="View all series in Parody">Parody</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/pregnant" title="View all series in Pregnant">Pregnant</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/rape" title="View all series in Rape">Rape</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/romance" title="View all series in Romance">Romance</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/school" title="View all series in School">School</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/schoolgirl" title="View all series in Schoolgirl">Schoolgirl</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/seinen" title="View all series in Seinen">Seinen</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/shibari" title="View all series in Shibari">Shibari</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/shota" title="View all series in Shota">Shota</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/shoujo" title="View all series in Shoujo">Shoujo</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/shounen" title="View all series in Shounen">Shounen</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/stocking" title="View all series in Stocking">Stocking</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/supernatural" title="View all series in Supernatural">Supernatural</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/swimsuit" title="View all series in Swimsuit">Swimsuit</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/teacher" title="View all series in Teacher">Teacher</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/tennis" title="View all series in Tennis">Tennis</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/tentacles" title="View all series in Tentacles">Tentacles</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/threesome" title="View all series in Threesome">Threesome</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/tsundere" title="View all series in Tsundere">Tsundere</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/uncensored" title="View all series in Uncensored">Uncensored</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/vampire" title="View all series in Vampire">Vampire</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/vanilla" title="View all series in Vanilla">Vanilla</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/virgin" title="View all series in Virgin">Virgin</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/yandere" title="View all series in Yandere">Yandere</a>
+                      <a class="col text-white text-decoration-none" style="border:3px solid #212529;background-color: #2a81e5;" href="genres/yuri" title="View all series in Yuri">Yuri</a>
+          </div>
+          </div>
+          <!-- <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
+          <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+    </div>
+
+    <footer class="pt-3 mt-4 text-muted border-top">
+      &copy; 2021
+    </footer>
+  </div>
+</main>
+
+
+<script>
+  plyr.setup("#plyr-video");
+
+  // $(".colek").hover(function(){
+  //     $(".tx-centered").css("display", "block");
+  //     $(".thumbnail").css("-webkit-filter", "brightness(.5)");
+  //     $(".thumbnail").css("filter", "brightness(.5)");
+  //   }, function(){
+  //     $(".tx-centered").css("display", "none");
+  //     $(".thumbnail").css("-webkit-filter", "");
+  //     $(".thumbnail").css("filter", "");
+  //     // $(this).css("background-color", "pink");
+  // });
+</script>
+    
+  </body>
+</html>

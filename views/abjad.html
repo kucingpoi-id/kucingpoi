@@ -1,0 +1,345 @@
+
+<!Doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Jumbotron example · Bootstrap v5.1</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/jumbotron/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="###URL###/assets/css/bootstrap.min.css" rel="stylesheet" >
+<script src="###URL###/assets/js/bootstrap.min.js"></script>
+<script src="###URL###/assets/js/jquery.min.js"></script>
+
+    <style>
+		body {
+			background: #16151d;
+    		color: #333;
+		}
+
+
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      .thumbnail{
+          height: 240px;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+        .thumbnail{
+            height: 200px;
+        }
+      }
+      
+  .link-post {
+    color: #add4bd;
+  }
+  .link-post:hover {
+    cursor: pointer;
+    color: #2a81e5;
+  }
+
+  .tx-container {
+position: relative;
+text-align: center;
+color: white;
+font-size: 12px;
+
+}
+
+/* Top right text */
+.tx-top-right {
+position: absolute;
+top: 0px;
+right: 0px;
+background: rgba(19, 111, 209, 0.878);
+}
+
+/* Bottom left text */
+.tx-bottom-left {
+width: 100%;
+text-align: left;
+padding-left: 10px;
+padding-right: 40px;
+position: absolute;
+bottom: 0px;
+left: 0px;
+background: rgba(0,0,0,.8);
+}
+
+/* Bottom right text */
+.tx-bottom-right {
+position: absolute;
+bottom: 0px;
+right: 0px;
+padding-left: 3px;
+padding-right: 3px;
+background: rgba(19, 111, 209, 0.878);
+}
+
+*:hover > .tx-centered {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+display: block;
+
+padding: 15%;
+background: rgba(0,0,0,.8);
+background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDUxMS45OTkgNTExLjk5OSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTExLjk5OSA1MTEuOTk5OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8cGF0aCBzdHlsZT0iZmlsbDojN0JEOUJGOyIgZD0iTTQ1NC41MTYsMjM2LjI2NUw4Mi4xNTIsMy41MzhjLTcuMTc2LTQuNDg1LTE2LjIxOC00LjcyMS0yMy42MTctMC42MjENCgljLTcuMzk5LDQuMDk5LTExLjk5LDExLjg5NC0xMS45OSwyMC4zNTR2MjMyLjcyN3YyMzIuNzI3YzAsOC40Niw0LjU5MSwxNi4yNTQsMTEuOTkyLDIwLjM1NmMzLjUxNiwxLjk0OSw3LjQwMSwyLjkxNywxMS4yODEsMi45MTcNCgljNC4yODcsMCw4LjU2Ny0xLjE4NCwxMi4zMzUtMy41MzdsMzcyLjM2NC0yMzIuNzI2YzYuODA1LTQuMjUzLDEwLjkzOC0xMS43MTEsMTAuOTM4LTE5LjczNWMwLDAsMCwwLDAtMC4wMDINCglDNDY1LjQ1MywyNDcuOTc2LDQ2MS4zMTksMjQwLjUxOCw0NTQuNTE2LDIzNi4yNjV6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojNjZCNEJBOyIgZD0iTTU4LjUzNyw1MDkuMDgyYzMuNTE2LDEuOTQ5LDcuNDAxLDIuOTE3LDExLjI4MSwyLjkxN2M0LjI4NywwLDguNTY3LTEuMTg0LDEyLjMzNS0zLjUzNw0KCWwzNzIuMzY0LTIzMi43MjZjNi44MDUtNC4yNTMsMTAuOTM4LTExLjcxMSwxMC45MzgtMTkuNzM1di0wLjAwMkg0Ni41NDV2MjMyLjcyN0M0Ni41NDUsNDk3LjE4Nyw1MS4xMzYsNTA0Ljk4LDU4LjUzNyw1MDkuMDgyeiIvPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPC9zdmc+DQo=');
+background-size: 45% 45%;
+background-repeat: no-repeat;
+background-position: center; 
+background-position-x: 55%;
+content: "";
+}
+
+*:hover > .thumbnail {
+  -webkit-filter: brightness(.5);
+  filter: brightness(.5);
+}
+
+</style>
+ 
+<script>
+$(document).ready(function(){
+  var random = "";
+  $("#judul-list").append(" "+random.toUpperCase() + " ");
+
+  $.get("###URL###/cache/abj-"+random, function(result, status){
+        var data = JSON.parse(result);
+        $.each(data, function(o,anime){
+            var postanime = `
+            <div class="col colek">
+              <a href="###URL###/anime/${anime.link}" class="link-post text-decoration-none" >
+                <div class="tx-container ">
+                  <img src="###URL###/assets/images/${anime.thumbnail}" 
+                  class="thumbnail mx-auto w-100" width="150" alt="${anime.judul}"> 
+                  <div class="tx-top-right p-1 rounded-bottom text-white">${anime.type}</div>
+                  <div class="tx-bottom-left py-1"><b>Episode 1</b></div>
+                  <div class="tx-bottom-right py-1">${anime.score}</div>
+                  <div class="tx-centered rounded-circle"></div>
+                </div>
+                <p class="w-100 text-wrap text-center" style="width: 150px;height:40px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 14px;"><small><b>${anime.judul}</b></small></p>
+              </a>
+            </div>
+            `;
+            $("#post-anime").append(postanime + " ");
+        })
+    });
+
+    $.get("###URL###/cache/total", function(result, status){
+        var result      = result["COUNT(*)"];
+        var pagelong = Math.ceil(result / 30);
+
+
+        for (let i = 1; i <= pagelong; i++) {
+            var pagination = `
+            <li class="page-item mx-1"><a class="page-link" href="#">${i}</a></li>
+            `;
+            $(".pagination").append(pagination + " ");
+        }
+
+        $(".page-link").click(function(){
+            $(".colek").remove();
+            var pageid = $(this).text();
+            $.get("###URL###/cache/animelist-"+(pageid-1), function(result, status){
+                var data = result.data;
+                $.each(data, function(o,anime){
+                    var postanime = `
+                    <div class="col colek">
+                    <a href="###URL###/anime/${anime.link}" class="link-post text-decoration-none" >
+                        <div class="tx-container ">
+                        <img src="###URL###/assets/images/${anime.thumb}" 
+                        class="thumbnail mx-auto w-100" width="150" alt="${anime.judul}"> 
+                        <div class="tx-top-right p-1 rounded-bottom text-white">${anime.tipe}</div>
+                        <div class="tx-bottom-left py-1"><b>Episode 1</b></div>
+                        <div class="tx-bottom-right py-1">${anime.score}</div>
+                        <div class="tx-centered rounded-circle"></div>
+                        </div>
+                        <p class="w-100 text-wrap text-center" style="width: 150px;height:40px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 14px;"><small><b>${anime.judul}</b></small></p>
+                    </a>
+                    </div>
+                    `;
+                    $("#post-anime").append(postanime + " ");
+                })
+            });
+            $(this).prop('disabled', true);
+            
+        });
+
+    })
+
+    // $("#post-anime").append(postanime + " ");
+
+
+
+
+
+});
+</script>
+
+
+  </head>
+  <body>
+    
+<main>
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="###URL###/home">
+          <img 
+          src="data:image/png;base64,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"
+          alt="" style="position: absolute;top:16px; ">
+          <span style="padding-left: 45px;">Poi</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link" href="###URL###/home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="###URL###/anime">Anime List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Popular</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Uncensored</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Season</a>
+            </li>
+          </ul>
+          <div class="d-flex text-white">
+            tester
+          </div>
+          <!-- <form class="d-flex"> -->
+            <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+            <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+          <!-- </form> -->
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="container py-4 mt-5">
+    <div class="row align-items-md-stretch g-3">
+      <div class="col-md-8">
+        <div class="h-100 pt-3 pb-5 px-3 text-white bg-dark rounded-3">
+          
+            <div class="row row-cols-2 row-cols-sm-2 row-cols-md-5 g-2 mt-4" id="post-anime">
+                <div class="col w-100">
+                <h5 id="judul-list">ANIME LIST:</h5>
+                <hr />
+                </div>
+            </div>
+            <nav class="w-100 mt-5" aria-label="...">
+                <ul class="pagination pagination-sm justify-content-center">
+                </ul>
+            </nav>
+          </div>
+      </div>
+      <div class="col-md-4">
+        <div class="h-100 p-3 bg-dark text-white rounded-3">
+          <div class="col w-100">
+            <h4>List A-Z</h4>
+          </div>
+          <div class="row row-cols-6 row-cols-md-6 text-center" style="font-size: 14px;">
+            <hr class="col w-100 mb-3" />
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/A">A</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/B">B</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/C">C</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/D">D</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/E">E</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/F">F</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/G">G</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/H">H</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/I">I</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/J">J</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/K">K</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/L">L</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/M">M</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/N">N</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/O">O</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/P">P</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/Q">Q</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/R">R</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/S">S</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/T">T</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/U">U</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/V">V</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/W">W</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/X">X</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/Y">Y</a>
+<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: #2a81e5;" href="###URL###/list/Z">Z</a>
+            <hr class="col w-100 mt-3" />
+          </div>
+
+          <div class="col w-100 mt-5">
+            <h4>Genre</h4>
+          </div>
+          
+          <div class="row row-cols-2 row-cols-md-3" style="font-size: 14px;">
+            <span class="col" style="border: 1px solid #666;"><a class="genre text-white text-decoration-none" href="#">Action</a></span>
+            <span class="col" style="border: 1px solid #666;"><a class="genre text-white text-decoration-none" href="#">Action1</a></span>
+            <span class="col" style="border: 1px solid #666;"><a class="genre text-white text-decoration-none" href="#">Action2</a></span>
+            <span class="col" style="border: 1px solid #666;"><a class="genre text-white text-decoration-none" href="#">Action3</a></span>
+            <span class="col" style="border: 1px solid #666;"><a class="genre text-white text-decoration-none" href="#">Action4</a></span>
+            <span class="col" style="border: 1px solid #666;"><a class="genre text-white text-decoration-none" href="#">Action5</a></span>
+            <span class="col" style="border: 1px solid #666;"><a class="genre text-white text-decoration-none" href="#">Action6</a></span>
+            <span class="col" style="border: 1px solid #666;"><a class="genre text-white text-decoration-none" href="#">Action7</a></span>
+            <span class="col" style="border: 1px solid #666;"><a class="genre text-white text-decoration-none" href="#">Action8</a></span>
+            <span class="col" style="border: 1px solid #666;"><a class="genre text-white text-decoration-none" href="#">Action9</a></span>
+            <span class="col" style="border: 1px solid #666;"><a class="genre text-white text-decoration-none" href="#">Action10</a></span>
+            <span class="col" style="border: 1px solid #666;"><a class="genre text-white text-decoration-none" href="#">Action11</a></span>
+            <span class="col" style="border: 1px solid #666;"><a class="genre text-white text-decoration-none" href="#">Action11</a></span>
+            <span class="col" style="border: 1px solid #666;"><a class="genre text-white text-decoration-none" href="#">Action11</a></span>
+            <span class="col" style="border: 1px solid #666;"><a class="genre text-white text-decoration-none" href="#">Action11</a></span>
+            <span class="col" style="border: 1px solid #666;"><a class="genre text-white text-decoration-none" href="#">Action11</a></span>
+            <span class="col" style="border: 1px solid #666;"><a class="genre text-white text-decoration-none" href="#">Action11</a></span>
+          </div>
+          <!-- <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
+          <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+    </div>
+
+    <footer class="pt-3 mt-4 text-muted border-top">
+      &copy; 2021
+    </footer>
+  </div>
+</main>
+
+
+<script>
+  // $(".colek").hover(function(){
+  //     $(".tx-centered").css("display", "block");
+  //     $(".thumbnail").css("-webkit-filter", "brightness(.5)");
+  //     $(".thumbnail").css("filter", "brightness(.5)");
+  //   }, function(){
+  //     $(".tx-centered").css("display", "none");
+  //     $(".thumbnail").css("-webkit-filter", "");
+  //     $(".thumbnail").css("filter", "");
+  //     // $(this).css("background-color", "pink");
+  // });
+</script>
+    
+  </body>
+</html>
