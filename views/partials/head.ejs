@@ -1,0 +1,590 @@
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="description" content=""/>
+<meta
+    name="author"
+    content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+<meta name="generator" content="Hugo 0.88.1"/>
+<title>Kucing Poi - Videos Streaming</title>
+<!-- Bootstrap core CSS -->
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery.min.js"></script>
+
+<style>
+    body {
+        background: #16151d;
+        color: #333;
+    }
+
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
+    .thumbnail {
+        height: 240px;
+    }
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+        .thumbnail {
+            height: 200px;
+        }
+    }
+
+    .link-post {
+        color: #add4bd;
+    }
+    .link-post:hover {
+        cursor: pointer;
+        color: #2a81e5;
+    }
+
+    .tx-container {
+        position: relative;
+        text-align: center;
+        color: white;
+        font-size: 12px;
+
+    }
+
+    /* Top right text */
+    .tx-top-right {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: rgba(19, 111, 209, 0.878);
+    }
+
+    /* Bottom left text */
+    .tx-bottom-left {
+        width: 100%;
+        text-align: left;
+        padding-left: 10px;
+        padding-right: 40px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: rgba(0,0,0,.8);
+    }
+
+    /* Bottom right text */
+    .tx-bottom-right {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding-left: 3px;
+        padding-right: 3px;
+        background: rgba(19, 111, 209, 0.878);
+    }
+
+    *:hover > .tx-centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+
+        padding: 15%;
+        background: rgba(0,0,0,.8);
+        background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDUxMS45OTkgNTExLjk5OSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTExLjk5OSA1MTEuOTk5OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8cGF0aCBzdHlsZT0iZmlsbDojN0JEOUJGOyIgZD0iTTQ1NC41MTYsMjM2LjI2NUw4Mi4xNTIsMy41MzhjLTcuMTc2LTQuNDg1LTE2LjIxOC00LjcyMS0yMy42MTctMC42MjENCgljLTcuMzk5LDQuMDk5LTExLjk5LDExLjg5NC0xMS45OSwyMC4zNTR2MjMyLjcyN3YyMzIuNzI3YzAsOC40Niw0LjU5MSwxNi4yNTQsMTEuOTkyLDIwLjM1NmMzLjUxNiwxLjk0OSw3LjQwMSwyLjkxNywxMS4yODEsMi45MTcNCgljNC4yODcsMCw4LjU2Ny0xLjE4NCwxMi4zMzUtMy41MzdsMzcyLjM2NC0yMzIuNzI2YzYuODA1LTQuMjUzLDEwLjkzOC0xMS43MTEsMTAuOTM4LTE5LjczNWMwLDAsMCwwLDAtMC4wMDINCglDNDY1LjQ1MywyNDcuOTc2LDQ2MS4zMTksMjQwLjUxOCw0NTQuNTE2LDIzNi4yNjV6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojNjZCNEJBOyIgZD0iTTU4LjUzNyw1MDkuMDgyYzMuNTE2LDEuOTQ5LDcuNDAxLDIuOTE3LDExLjI4MSwyLjkxN2M0LjI4NywwLDguNTY3LTEuMTg0LDEyLjMzNS0zLjUzNw0KCWwzNzIuMzY0LTIzMi43MjZjNi44MDUtNC4yNTMsMTAuOTM4LTExLjcxMSwxMC45MzgtMTkuNzM1di0wLjAwMkg0Ni41NDV2MjMyLjcyN0M0Ni41NDUsNDk3LjE4Nyw1MS4xMzYsNTA0Ljk4LDU4LjUzNyw1MDkuMDgyeiIvPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPC9zdmc+DQo=");
+        background-size: 45% 45%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-position-x: 55%;
+        content: "";
+    }
+
+    *:hover > .thumbnail {
+        -webkit-filter: brightness(.5);
+        filter: brightness(.5);
+    }
+
+    .star-ratings {
+        unicode-bidi: bidi-override;
+        font-weight: bold;
+        color: #ccc;
+        font-size: 20px;
+        position: relative;
+        margin: 0;
+        padding: 0;
+    }
+    .star-ratings .fill-ratings {
+        color: rgb(237, 184, 103);
+        padding: 0;
+        position: absolute;
+        z-index: 1;
+        display: block;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+    }
+    .star-ratings .fill-ratings span {
+        display: inline-block;
+    }
+    .star-ratings .empty-ratings {
+        padding: 0;
+        display: block;
+        z-index: 0;
+    }
+
+    .anime-genre-link:hover {
+        color: rgb(237, 184, 103) !important;
+    }
+
+</style>
+<script>
+    $(document).ready(function () {
+        $.get("/cache/genre", function (result) {
+            var data = JSON.parse(result);
+            $.each(data, function (o, genre) {
+                var genrelist = '<span class="col" style="border: 1px solid #666;"><a class="genre text-white text-decoration-none" href="/genre/'+genre.link+'">'+genre.genre+'</a></span>';
+                $(".genre-list").append(genrelist + " ");
+            })
+        })
+
+        $('.abj').append('<hr class="col w-100 mb-3" />');
+        for (var i = 65; i <= 90; i++) {
+            var randomColor = '#'+ Math.floor(Math.random() * 19777215).toString(16);
+            $('.abj').append('<a class="col genre text-white my-2 mx-1 text-decoration-none" style="background-color: '+randomColor+';" href="/list/' + String.fromCharCode(i) + '">' + String.fromCharCode(i) + '</a>');
+        }
+        $('.abj').append('<hr class="col w-100 mt-3" />');
+    })
+</script>
+<% if( tmpl == 'index') { %>
+    <!-- HOME -->
+<% } else if( tmpl == 'detail') { %>  
+    <!-- DETAIL -->
+    <script>
+        $(document).ready(function(){
+            var score = Math.floor($('.score').text().slice(0,-1).replace(/\./,''))
+            var star_rating_width = $('.fill-ratings span').width(score);
+            $('.star-ratings').width(star_rating_width);
+        });
+    </script>
+<% } else if( tmpl == 'list') { %>
+    <!-- ANIME LIST -->
+    <script>
+        $(document).ready(function(){
+            var pagelong    = Math.ceil(Math.floor('<%= totalpage %>') / 30);
+            var cpp         = Math.floor('<%= forcheck %>') == 0 ? 1 : Math.floor("<%= forcheck %>");
+            var kcp         = 2;
+
+            $('.pagination').append('<li class="page-item'+ (cpp == 1 ? ' disabled' : '')+'"><a class="page-link" href="'+ (cpp == 1 ? '#' : '/anime?'+(cpp-1))+'">PREV</a></li>');
+            for (let i = 0; i < pagelong; i++) {
+
+                if( (cpp+kcp) ) {
+                    if(i == 0 || i == (pagelong-1) ){
+                        if ( (cpp == pagelong && i == (pagelong-1)) || (cpp == 1 && i == 0 ) ) {
+                            var pagination = '<li class="page-item disabled">'+
+                            '<a class="page-link" href="#">'+(i+1)+'</a>'+
+                            '</li>';
+                        }
+                        else {
+                            var pagination = '<li class="page-item">'+
+                            '<a href="/anime'+ ((i == 0 ) ? '' : '?'+(i+1))+'" class="page-link">'+(i+1)+'</a>'+
+                            '</li>';
+                        }
+                    }
+                    else if ( i > (cpp-kcp-2) && i < cpp+kcp ) {
+                        if(i == (cpp -1)) {
+                            var pagination = 
+                            '<li class="page-item active" aria-current="page">'+
+                            '<a class="page-link" href="#">'+(i+1)+'</a>'+
+                            '</li>';
+                        }
+                        else {
+                            var pagination = '<li class="page-item">'+
+                            '<a href="/anime'+ ((i == 0 ) ? '' : '?'+(i+1))+'" class="page-link">'+(i+1)+'</a>'+
+                            '</li>';
+                        }
+                    }
+                    else if( i == (cpp+kcp) || i == (cpp-kcp-2) ) {
+                        var pagination = 
+                        '<li class="page-item disabled">'+
+                        '<a class="page-link" href="#">...</a>'+
+                        '</li>';
+                    }
+                    else {  
+                        var pagination = '';
+                    }
+
+                }
+                if(i != pagelong){
+                    $('.pagination').append(pagination + " ");
+                }
+            }
+            $('.pagination').append('<li class="page-item'+ (cpp == pagelong ? ' disabled' : '')+'"><a class="page-link" href="'+ (cpp == pagelong ? '#' : '/anime?'+(cpp+1))+'" >NEXT</a></li>');
+        })
+    </script>
+<% } else if( tmpl == 'watch') { %>
+    <!-- WATCH -->
+    <link rel="stylesheet" href="/assets/css/player.css">
+    <script src="/assets/js/player.js"></script>
+    <script>
+        $(document).ready(function(){
+            $( "body" ).keydown(function( event ) {
+                var myarray = [39,37,32,19,38,40,13];
+                if(jQuery.inArray(event.which, myarray) !== -1) {
+                // if ( event.which ) {
+                    $(function() {
+                    $('#plyr-video').focus().select();
+                    });
+                    event.preventDefault();
+                }
+        
+            })
+
+            var vids = document.querySelectorAll("video");
+        
+            // for all the videos in the page
+            for (var x = 0; x < vids.length; x++) {
+        
+                // add an event listening for errors
+                vids[x].addEventListener('error', function(e) {
+                
+                // if the error is caused by the video not loading
+                if (this.networkState > 2) {
+                    
+                    // add an image with the message "video not found"
+                    this.setAttribute("poster", "http://dummyimage.com/312x175/000/fff.jpg&text=Video+Not+Found");
+                }
+                }, true);
+        
+            }
+        });
+    </script>
+<% } else if( tmpl == 'abc') { %>
+    <!-- ABJAD BELUM -->
+    <link rel="stylesheet" href="/assets/css/pagination.css">
+    <script>
+    $(document).ready(function(){
+        var random = "<%= variant %>";
+        $("#judul-list").append(" "+random.toUpperCase() + " ");
+        $.get("/cache/abj-"+random, function(result, status){
+            var data = JSON.parse(result);
+            $('#pagination-container').pagination({
+                dataSource: data,
+                pageSize: 15,
+                callback: function(data, pagination) {
+                    function plating(o) {
+                        var html = '';
+                        $.each(data, function(o,anime){
+                            html += '<div class="col colek"style="max-width:200px;"><a href="/anime/'+anime.link+'" class="link-post text-decoration-none" >'+
+                                '<div class="tx-container ">'+
+                                    '<!-- <img src="/assets/images/PSX_20220307_131800.jpg" --> '+
+                                    '<img src="/assets/images/'+anime.thumbnail+'"'+
+                                    'class="thumbnail mx-auto w-100" width="200" alt="'+anime.judul+'"> '+
+                                    '<div class="tx-top-right p-1 rounded-bottom text-white">'+anime.type+'</div>'+
+                                    '<div class="tx-bottom-left py-1"><b>Episode 1</b></div>'+
+                                    '<div class="tx-bottom-right py-1">'+anime.score+'</div>'+
+                                    '<div class="tx-centered rounded-circle"></div>'+
+                                '</div>'+
+                                '<p class="w-100 text-wrap text-center" style="width: 150px;height:40px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 14px;"><small><b>'+anime.judul+'</b></small></p>'+
+                            '</a></div>';
+                            // $("#data-container").append(postanime + " ");
+                        })
+                        html += '';
+                        return html;
+                    }
+
+                    var html = plating(data);
+                    $('#data-container').html(html);
+                }
+            })
+        })
+    });
+    </script>
+<%  } else if( tmpl == 'genre') { %>
+    <script>
+    $(document).ready(function(){
+        $.get("/cache/genre-<%= paramtitle %>", function(result, status){
+            var posts =  $('#post-anime');
+            var b = JSON.parse(result);
+            var max_size=b.length;
+            var sta = 0;
+            var elements_per_page = 20;
+            if (max_size <= elements_per_page) {
+                $("#nextValue,#PreeValue").addClass('disabled')
+            }
+            var limit = elements_per_page;
+            // console.log(max_size)
+
+            goFun(sta,limit);
+            function goFun(sta,limit) {
+                for (var i =sta ; i < limit; i++) {
+                    if (b[i] !== undefined) {
+                        var $nr = `
+                        <div class="col colek">
+                        <a href="/anime/${b[i].link}" class="link-post text-decoration-none" >
+                            <div class="tx-container ">
+                            <img src="/assets/images/${b[i].thumbnail}" 
+                            class="thumbnail mx-auto w-100" width="150" alt="${b[i].judul}"> 
+                            <div class="tx-top-right p-1 rounded-bottom text-white">${b[i].type}</div>
+                            <div class="tx-bottom-left py-1"><b>Episode 1</b></div>
+                            <div class="tx-bottom-right py-1">${b[i].score}</div>
+                            <div class="tx-centered rounded-circle"></div>
+                            </div>
+                            <p class="w-100 text-wrap text-center" style="width: 150px;height:40px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 14px;"><small><b>${b[i].judul}</b></small></p>
+                        </a>
+                        </div>
+                        `;
+                        posts.append($nr);
+                    }
+                }
+            }
+
+            $('#nextValue').click(function(e){
+                $('#PreeValue').removeClass('disabled')
+                var ddsed = $(this).hasClass('disabled')
+                if(ddsed) {
+                    e.preventDefault();
+                }
+                var next = limit;
+                if(max_size>=next) {
+                    limit = limit+elements_per_page;
+                    posts.empty();
+                    goFun(next,limit);
+                }
+                else $(this).addClass('disabled')
+            });
+            $('#PreeValue').click(function(e){
+                $('#nextValue').removeClass('disabled')
+                var ddsed = $(this).hasClass('disabled')
+                    if(ddsed) {
+                    e.preventDefault();
+                }
+                var pre = limit-(2*elements_per_page);
+                if(pre>=0) {
+                    limit = limit-elements_per_page;
+                    posts.empty();
+                    goFun(pre,limit);
+                    if (pre < 1) {
+                        $(this).addClass('disabled')
+                    }
+                }
+                else {
+                    $(this).addClass('disabled')
+                }
+            });
+        })
+
+    });
+    </script>
+<%  } else if( tmpl == 'popular') { %>
+    <script src="/cache/popular"></script>
+    <script>
+        // console.log(b)
+    // $(document).ready(function(){
+
+        // $.get("/cache/popular", function(result, status){
+        //     var posts =  $('#post-anime');
+        //     var b = JSON.parse(result);
+        //     var max_size=b.length;
+        //     var sta = 0;
+        //     var elements_per_page = 20;
+        //     if (max_size <= elements_per_page) {
+        //         $("#nextValue,#PreeValue").addClass('disabled')
+        //     }
+        //     var limit = elements_per_page;
+        //     // console.log(max_size)
+
+        //     goFun(sta,limit);
+        //     function goFun(sta,limit) {
+        //         for (var i =sta ; i < limit; i++) {
+        //             if (b[i] !== undefined) {
+        //                 var $nr = `
+        //                 <div class="col colek">
+        //                 <a href="/anime/${b[i].link}" class="link-post text-decoration-none" >
+        //                     <div class="tx-container ">
+        //                     <img src="/assets/images/${b[i].thumbnail}" 
+        //                     class="thumbnail mx-auto w-100" width="150" alt="${b[i].judul}"> 
+        //                     <div class="tx-top-right p-1 rounded-bottom text-white">${b[i].type}</div>
+        //                     <div class="tx-bottom-left py-1"><b>Episode 1</b></div>
+        //                     <div class="tx-bottom-right py-1">${b[i].score}</div>
+        //                     <div class="tx-centered rounded-circle"></div>
+        //                     </div>
+        //                     <p class="w-100 text-wrap text-center" style="width: 150px;height:40px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 14px;"><small><b>${b[i].judul}</b></small></p>
+        //                 </a>
+        //                 </div>
+        //                 `;
+        //                 posts.append($nr);
+        //             }
+        //         }
+        //     }
+
+        //     $('#nextValue').click(function(e){
+        //         $('#PreeValue').removeClass('disabled')
+        //         var ddsed = $(this).hasClass('disabled')
+        //         if(ddsed) {
+        //             e.preventDefault();
+        //         }
+        //         var next = limit;
+        //         if(max_size>=next) {
+        //             limit = limit+elements_per_page;
+        //             posts.empty();
+        //             goFun(next,limit);
+        //         }
+        //         else $(this).addClass('disabled')
+        //     });
+        //     $('#PreeValue').click(function(e){
+        //         $('#nextValue').removeClass('disabled')
+        //         var ddsed = $(this).hasClass('disabled')
+        //             if(ddsed) {
+        //             e.preventDefault();
+        //         }
+        //         var pre = limit-(2*elements_per_page);
+        //         if(pre>=0) {
+        //             limit = limit-elements_per_page;
+        //             posts.empty();
+        //             goFun(pre,limit);
+        //             if (pre < 1) {
+        //                 $(this).addClass('disabled')
+        //             }
+        //         }
+        //         else {
+        //             $(this).addClass('disabled')
+        //         }
+        //     });
+        // })
+
+    // });
+    </script>
+<%  } else if( tmpl == 'season') { %>
+    <script>
+    $(document).ready(function(){
+        $.get("/cache/season-<%= paramtitle %>", function(result, status){
+            var posts =  $('#post-anime');
+            var b = JSON.parse(result);
+            var max_size=b.length;
+            var sta = 0;
+            var elements_per_page = 20;
+            if (max_size <= elements_per_page) {
+                $("#nextValue,#PreeValue").addClass('disabled')
+            }
+            var limit = elements_per_page;
+            // console.log(max_size)
+
+            goFun(sta,limit);
+            function goFun(sta,limit) {
+                for (var i =sta ; i < limit; i++) {
+                    if (b[i] !== undefined) {
+                        var $nr = `
+                        <div class="col colek">
+                        <a href="/anime/${b[i].link}" class="link-post text-decoration-none" >
+                            <div class="tx-container ">
+                            <img src="/assets/images/${b[i].thumbnail}" 
+                            class="thumbnail mx-auto w-100" width="150" alt="${b[i].judul}"> 
+                            <div class="tx-top-right p-1 rounded-bottom text-white">${b[i].type}</div>
+                            <div class="tx-bottom-left py-1"><b>Episode 1</b></div>
+                            <div class="tx-bottom-right py-1">${b[i].score}</div>
+                            <div class="tx-centered rounded-circle"></div>
+                            </div>
+                            <p class="w-100 text-wrap text-center" style="width: 150px;height:40px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 14px;"><small><b>${b[i].judul}</b></small></p>
+                        </a>
+                        </div>
+                        `;
+                        posts.append($nr);
+                    }
+                }
+            }
+
+            $('#nextValue').click(function(e){
+                $('#PreeValue').removeClass('disabled')
+                var ddsed = $(this).hasClass('disabled')
+                if(ddsed) {
+                    e.preventDefault();
+                }
+                var next = limit;
+                if(max_size>=next) {
+                    limit = limit+elements_per_page;
+                    posts.empty();
+                    goFun(next,limit);
+                }
+                else $(this).addClass('disabled')
+            });
+            $('#PreeValue').click(function(e){
+                $('#nextValue').removeClass('disabled')
+                var ddsed = $(this).hasClass('disabled')
+                    if(ddsed) {
+                    e.preventDefault();
+                }
+                var pre = limit-(2*elements_per_page);
+                if(pre>=0) {
+                    limit = limit-elements_per_page;
+                    posts.empty();
+                    goFun(pre,limit);
+                    if (pre < 1) {
+                        $(this).addClass('disabled')
+                    }
+                }
+                else {
+                    $(this).addClass('disabled')
+                }
+            });
+        })
+
+    });
+    </script>
+<%  } else if( tmpl == 'test') { %>
+    <script>
+        $.get("/cache/total", function(result, status){
+            var pagelong    = Math.ceil(result["COUNT(*)"] / 30);
+            var cpp         = Math.floor("<%= forcheck %>") == 0 ? 1 : Math.floor("<%= forcheck %>");
+            var kcp         = 2;
+
+            $('.pagination').append('<li class="page-item'+ (cpp == 1 ? ' disabled' : '')+'"><a class="page-link" href="'+ (cpp == 1 ? '#' : '/test?'+(cpp-1))+'">PREV</a></li>');
+            for (let i = 0; i < pagelong; i++) {
+
+                if( (cpp+kcp) ) {
+                    if(i == 0 || i == (pagelong-1) ){
+                        if ( (cpp == pagelong && i == (pagelong-1)) || (cpp == 1 && i == 0 ) ) {
+                            var pagination = '<li class="page-item disabled">'+
+                            '<a class="page-link" href="#">'+(i+1)+'</a>'+
+                            '</li>';
+                        }
+                        else {
+                            var pagination = '<li class="page-item">'+
+                            '<a href="/test'+ ((i == 0 ) ? '' : '?'+(i+1))+'" class="page-link">'+(i+1)+'</a>'+
+                            '</li>';
+                        }
+                    }
+                    else if ( i > (cpp-kcp-2) && i < cpp+kcp ) {
+                        if(i == (cpp -1)) {
+                            var pagination = 
+                            '<li class="page-item active" aria-current="page">'+
+                            '<a class="page-link" href="#">'+(i+1)+'</a>'+
+                            '</li>';
+                        }
+                        else {
+                            var pagination = '<li class="page-item">'+
+                            '<a href="/test'+ ((i == 0 ) ? '' : '?'+(i+1))+'" class="page-link">'+(i+1)+'</a>'+
+                            '</li>';
+                        }
+                    }
+                    else if( i == (cpp+kcp) || i == (cpp-kcp-2) ) {
+                        var pagination = 
+                        '<li class="page-item disabled">'+
+                        '<a class="page-link" href="#">...</a>'+
+                        '</li>';
+                    }
+                    else {  
+                        var pagination = '';
+                    }
+
+                }
+                if(i != pagelong){
+                    $('.pagination').append(pagination + " ");
+                }
+            }
+            $('.pagination').append('<li class="page-item'+ (cpp == pagelong ? ' disabled' : '')+'"><a class="page-link" href="'+ (cpp == pagelong ? '#' : '/test?'+(cpp+1))+'" >NEXT</a></li>');
+        })
+    </script>
+<%  } else {%>
+
+<%  } %>

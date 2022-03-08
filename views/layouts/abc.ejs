@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head', {tmpl:'abc', variant: paramtitle}); %>
+</head>
+<body>
+
+<main>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <div class="container py-4 mt-5">
+        <div class="row align-items-md-stretch g-3">
+            <div class="col-md-8">
+                <div class="h-100 pt-3 pb-5 px-3 text-white bg-dark rounded-3">
+                    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-2 mt-4" id="post-anime">
+                        <div class="col w-100">
+                            <h5>Anime List: <%= paramtitle %></h5>
+                            <hr />
+                            <!-- LIST ANIME -->
+                            <div class="col row row-cols-2 row-cols-md-3 row-cols-lg-5" id="data-container"></div>
+                            <div class="col w-100 justify-content-center" style="text-align: center !important;" id="pagination-container"></div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            
+            <%- include('../partials/sidebar'); %>
+
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/footer'); %>
+
+</body>
+</html>

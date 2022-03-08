@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head', {tmpl:'watch'}); %>
+</head>
+<body>
+
+<main>
+    <header>
+        <%- include('../partials/header', {
+            variant:'watch'
+        }); %>
+    </header>
+
+    <div class="container py-4 mt-5">
+        <div class="row align-items-md-stretch g-3">
+            <div class="col-md-8">
+                <div class="h-100 py-3 text-white bg-dark rounded-3" id="detail-anime">
+                    <% var data = JSON.parse(animevideo) %>
+                    <div class="w-100 text-center">
+                        <video class="w-100" id="plyr-video" muted="muted" tabindex="1" autoplay controls>
+                            <source src="/w/<%-data.media%>" type="video/mp4">
+                            <!-- Captions are optional -->
+                            <!-- <track kind="captions" label="English captions" src="/path/to/video-caption.vtt" srclang="en" default> -->
+                        </video>
+                    </div>
+                    <div class="p-3">
+                        <h5><%-data.judul%></h5>
+                        <div id="episode-list">
+                            <% for(var i=0; i<JSON.parse(episodelist).length; i++) { %>
+                            <span class="row row-cols-2 pt-2">
+                                <a class="col col-10 text-decoration-none" href="/watch/<%-JSON.parse(episodelist)[i].link %>"><%-JSON.parse(episodelist)[i].judul%></a>
+                                <a class="col col-2" href="/watch/<%-JSON.parse(episodelist)[i].link %>">Watch</a>
+                            </span>
+                            <% } %>
+                        </div>
+                    </div>            
+                </div>
+            </div>
+
+            <%- include('../partials/sidebar'); %>
+
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/footer'); %>
+
+</body>
+</html>

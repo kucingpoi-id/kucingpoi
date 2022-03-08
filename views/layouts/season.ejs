@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head', {tmpl:'season',variant: paramtitle}); %>
+</head>
+<body>
+
+<main>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <div class="container py-4 mt-5">
+        <div class="row align-items-md-stretch g-3">
+            <div class="col-md-8">
+                <div class="h-100 pt-3 pb-5 px-3 text-white bg-dark rounded-3">
+                    <div class="pagination pagination-sm justify-content-center row row-cols g-1">
+                        <div class="col text-start">
+                            <button id="PreeValue" type="button" class="btn btn-sm btn-primary">Prev </button>
+                        </div>
+                        <h5 class="col text-center">Season <%= paramtitle %></h5>
+                        <div class="col text-end">
+                            <button id="nextValue" type="button" class="btn btn-sm btn-primary">Next</button>
+                        </div>
+                    </div>
+                    
+                    <hr />
+                    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-2 mt-4" id="post-anime">
+                    </div>
+                </div> 
+            </div>
+            
+            <%- include('../partials/sidebar'); %>
+
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/footer'); %>
+
+</body>
+</html>

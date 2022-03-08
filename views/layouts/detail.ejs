@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head', {tmpl:'detail'}); %>
+</head>
+<body>
+
+<main>
+    <header>
+        <%- include('../partials/header', {
+            variant:'detail'
+        }); %>
+    </header>
+
+    <div class="container py-4 mt-5">
+        <div class="row align-items-md-stretch g-3">
+            <div class="col-md-8">
+                <div class="h-100 pb-5 text-white bg-dark rounded-3" id="detail-anime">
+                    <% function myGenre(num) { return `<a href="/genre/${num}" class="anime-genre-link text-decoration-none" style="color:rgb(136, 136, 136);">${num}</a>`} %>
+                    <% var data = JSON.parse(contentanim) %>
+                    <div class="center-cropped" 
+                            style="width: 100%;
+                            border: 1px solid #000;
+                            height: 320px;
+                            background-position: top;
+                            background-repeat: no-repeat;background-image: url('/assets/images/<%= data.thumbnail %>');
+                            background-size: cover;
+                            -webkit-filter: brightness(.8);
+                            filter: brightness(.8);
+                            ">
+                        </div>
+                        <div class="row row-cols-2 g-1 px-3">
+                            <span class="col col-4">
+                                <img src="/assets/images/<%= data.thumbnail %>" style="max-width: 13vw;border: 5px solid sandybrown;position: absolute;transform: translate(20%, -30%);" alt="<%= data.judul %>">
+                            </span>
+                            <span class="col col-8 pt-3">
+                                <h3><%- data.judul %></h3>
+                                <div class="w-100 pb-3 row row-cols-2">
+                                    <div class="col star-ratings">
+                                        <div class="fill-ratings" ><span>★★★★★</span></div>
+                                        <div class="empty-ratings"><span>★★★★★</span></div>
+                                    </div>
+                                </div>
+                                <span class="row row-cols-2 pb-3" style="font-size: 12px;color: rgb(136, 136, 136);font-family: Prompt, sans-serif;">
+                                    <span class="col"><b class="text-white">Score:</b> <span class="score"><%= data.score %></span></span>
+                                    <span class="col w-100 pb-2"><b class="text-white">Genres:</b> <%- data.genre.split(',').map(myGenre).join(', ') %></span>
+                                    <span class="col"><b class="text-white">Japan:</b>      <%= data.alter %></span>
+                                    <span class="col"><b class="text-white">Season:</b><a href="/season/<%= data.season %>" class="anime-genre-link text-decoration-none" style="color:rgb(136, 136, 136);"> <%= data.season %></a></span>
+                                    <span class="col"><b class="text-white">Rating:</b>     <%= data.rating %></span>
+                                    <span class="col"><b class="text-white">Status:</b>     <%= data.status %></span>
+                                    <span class="col"><b class="text-white">Network:</b>    <%= data.studio %></span>
+                                    <span class="col"><b class="text-white">Released:</b>   <%= data.released %></span>
+                                    <span class="col"><b class="text-white">Type:</b>       <%= data.type %></span>
+                                    <span class="col"><b class="text-white">Duration:</b> 02.12</span>
+                                    
+                                </span>
+                            </span>
+        
+                            <div class="w-100 col">
+                                    <b style="font-size: 12px;">Sinopsis:</b>
+                                    <p style="font-size: 12px;color: rgb(136, 136, 136); text-align: justify; text-indent: 0.1in;">
+                                        <%= data.sinopsis %>
+                                    </p>
+                            </div>
+                            <div class="w-100 col ">
+                                <hr class="g-1" />
+                                <h5>Episode <%- data.judul %></h5>
+                                <div id="link-watch"></div>
+                                <hr />
+                                <% for(var i=0; i<JSON.parse(contentepis).length; i++) { %>
+                                <span class="row row-cols-2 pt-2">
+                                    <a class="col col-10 text-decoration-none" href="/watch/<%=JSON.parse(contentepis)[i].link %>"><%=JSON.parse(contentepis)[i].judul %></a>
+                                    <a class="col col-2 text-decoration-none" href="/watch/<%=JSON.parse(contentepis)[i].link %>">Watch</a>
+                                </span>
+                                <% } %>
+
+                                <p class="py-3" style="font-size:12px;">
+                                    <b>keywords:</b> <%- data.keyword %>
+                                </p>
+                                <hr />
+                            </div>
+                            <div class="w-100 col row row-cols-1 row-cols-md-3 justify-content-center justify-content-md-between ">
+                                <% var ante = JSON.parse(contentante) %>
+                                    <% if(ante[0]) { %>
+                                    <div class="col cols-start" style="max-width: 150px;">
+                                        <a href="/anime/<%= ante[0].link %>" class="link-post text-decoration-none" >
+                                            <div class="tx-container ">
+                                                
+                                                <!-- <img src="/assets/images/PSX_20220307_131800.jpg"
+                                            class="thumbnail mx-auto w-100" width="150" alt="<%= ante[0].judul %>">  -->
+                                                <img src="/assets/images/<%= ante[0].thumbnail %>" 
+                                            class="thumbnail mx-auto w-100" width="150" alt="<%= ante[0].judul %>"> 
+                                            <div class="tx-top-right p-1 rounded-bottom text-white"><%= ante[0].type %></div>
+                                            <div class="tx-bottom-left py-1"><b>Episode 1</b></div>
+                                            <div class="tx-bottom-right py-1"><%= ante[0].score %></div>
+                                            <div class="tx-centered rounded-circle"></div>
+                                            </div>
+                                            <p class="w-100 text-wrap text-center" style="width: 150px;height:40px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 14px;"><small><b><%= ante[0].judul %></b></small></p>
+                                        </a>
+                                    </div>
+                                    <% } else { %>
+                                        <div class="col cols-end text-end" style="max-width: 150px;content: '';"></div>
+                                    <% } %>
+                                    <div class="border my-3">
+                                        <div class="border w-100 h-50">space</div>
+                                        <div class="border w-100 h-50">space</div>
+                                    </div>
+                                    <% if(ante[1]) { %>
+                                    <div class="col cols-end text-end" style="max-width: 150px;">
+                                        <a href="/anime/<%= ante[1].link %>" class="link-post text-decoration-none" >
+                                            <div class="tx-container ">
+                                                
+                                                <!-- <img src="/assets/images/PSX_20220307_131800.jpg"
+                                            class="thumbnail mx-auto w-100" width="150" alt="<%= ante[1].judul %>">  -->
+                                                <img src="/assets/images/<%= ante[1].thumbnail %>" 
+                                            class="thumbnail mx-auto w-100" width="150" alt="<%= ante[1].judul %>"> 
+                                            <div class="tx-top-right p-1 rounded-bottom text-white"><%= ante[1].type %></div>
+                                            <div class="tx-bottom-left py-1"><b>Episode 1</b></div>
+                                            <div class="tx-bottom-right py-1"><%= ante[1].score %></div>
+                                            <div class="tx-centered rounded-circle"></div>
+                                            </div>
+                                            <p class="w-100 text-wrap text-center" style="width: 150px;height:40px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 14px;"><small><b><%= ante[1].judul %></b></small></p>
+                                        </a>
+                                    </div>
+                                    <% } else { %>
+                                        <div class="col cols-end text-end" style="max-width: 150px;content: '';"></div>
+                                    <% } %>
+                            </div>
+                        </div>
+                        
+                </div>  
+            </div>
+
+            <%- include('../partials/sidebar'); %>
+
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/footer'); %>
+
+</body>
+</html>

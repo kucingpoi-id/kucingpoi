@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head', {tmpl:'index'}); %>
+</head>
+<body>
+
+<main>
+    <header>
+        <%- include('../partials/header', {
+            variant:'index',
+            navhome:'active'
+        }); %>
+    </header>
+
+    <div class="container py-4 mt-5">
+        <div class="row align-items-md-stretch g-3">
+            <div class="col-md-8">
+                <div class="h-100 pt-3 pb-5 px-3 text-white bg-dark rounded-3">
+                    <% function myGenre(num) { return `<a href="/genre/${num}" class="anime-genre-link text-decoration-none" style="color:rgb(136, 136, 136);">${num}</a>`}
+                    var o   = JSON.parse(contentsli);
+                    %>
+
+                    <div
+                        id="myCarousel"
+                        class="carousel carousel-light slide"
+                        data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <% for(var i=0; i<o.length; i++) { %>
+                                <% if (i == 0 ) { %>
+                                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
+                                <% } else { %>
+                                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="<%= i %>" aria-label="Slide <%= i %>"></button>
+                                <% } %>
+                            <% } %>
+                        </div>
+                        <div class="carousel-inner">
+                            <% for(var s=0; s<o.length; s++) { %>
+                                <% if (s == 0 ) { %>
+                                <div class="carousel-item active" data-bs-interval="5000">
+                                <% } else { %>
+                                <div class="carousel-item" data-bs-interval="5000">
+                                <% } %>
+                                    <div class="center-cropped" 
+                                        style="width: 100%;
+                                        border: 1px solid #000;
+                                        height: 320px;
+                                        background-position: top;
+                                        background-repeat: no-repeat;background-image: url('/assets/images/<%= o[s].thumbnail %>');
+                                        background-size: cover;
+                                        -webkit-filter: brightness(.2);
+                                        filter: brightness(.2);
+                                        ">
+                                    </div>
+                    
+                                    <div class="carousel-caption pt-0 row row-cols-md-2 d-flex">
+                                        <div class="col slide-show-detail text-white text-start">
+                                            <a href="/anime/<%= o[s].link %>" class="slides-link text-white text-decoration-none">
+                                                <h5><%-o[s].judul.substring(0, 22)%><% (o[s].judul.length > 22) ? '...' : '' %></h5>
+                                            </a>
+                                            <p style="font-size: 12px; line-height: 1.3;">
+                                            <b style="color: yellow;"><%=o[s].released %></b><br>
+                                            <b>Genre:</b> <small class="slides-genre"><%- o[s].genre.split(',').slice(0, 5).map(myGenre).join(', ')%> <%- (o[s].genre.split(',').length > 5) ? ' ...' : ''%></small><br><br>
+                                            Summary <br> <small style="color: #ccc;"><%-o[s].sinopsis.substring(0, 100)%><%- (o[s].sinopsis.length > 100)    ? '...'    : ''%></small><br>
+                                            <br>
+                                            Status: <a href="/anime-status/<$-o[s].status.toLowerCase()%>" class="slides-link text-white text-decoration-none"><%-o[s].status%></a><br>
+                                            Type: <a href="/anime-tipe/<%-o[s].type.toLowerCase()%>" class="slides-link text-white text-decoration-none"><%-o[s].type%></a></p>
+                                        </div>
+                                        <div class="col slide-show-image d-none d-lg-block">
+                                          <a href="/anime/<%-o[s].link%>" class="slides-link-image text-white text-decoration-none">
+                                            <img class="" src="/assets/images/<%-o[s].thumbnail%>" style="max-width: 120px;" alt="<%-o[s].judul%>">
+                                          </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-2 mt-4" id="post-ongoing">
+                        <div class="col row g-1 w-100">
+                            <h5 class="col text-start">Ongoing</h5>
+                            <span class="col text-end">
+                                <a href="#" class="text-decoration-none">More >></a>
+                            </span>
+                            <hr/>
+                        </div>
+                    <% for(var i=0; i<JSON.parse(contentong).length; i++) { %>
+                        <div class="col colek">
+                            <a href="/anime/<%= JSON.parse(contentong)[i].link %>" class="link-post text-decoration-none" >
+                            <div class="tx-container ">
+                                <img src="/assets/images/PSX_20220307_131800.jpg"
+                                class="thumbnail mx-auto w-100" width="150" alt="<%= JSON.parse(contentong)[i].judul %>"> 
+                                <!-- <img src="/assets/images/<%= JSON.parse(contentong)[i].thumbnail %>" 
+                                class="thumbnail mx-auto w-100" width="150" alt="<%= JSON.parse(contentong)[i].judul %>">  -->
+                                <div class="tx-top-right p-1 rounded-bottom text-white"><%= JSON.parse(contentong)[i].type %></div>
+                                <div class="tx-bottom-left py-1"><b>Episode 1</b></div>
+                                <div class="tx-bottom-right py-1"><%= JSON.parse(contentong)[i].score %></div>
+                                <div class="tx-centered rounded-circle"></div>
+                            </div>
+                            <p class="w-100 text-wrap text-center" style="width: 150px;height:40px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 14px;"><small><b><%- JSON.parse(contentong)[i].judul %></b></small></p>
+                            </a>
+                        </div>
+                    <% } %>
+                    </div>
+                    
+                    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-2 mt-4" id="post-completed">
+                        <div class="col row w-100 g-1">
+                            <h5 class="col text-start">Completed</h5>
+                            <span class="col text-end">
+                                <a href="#" class="text-decoration-none">More >></a>
+                            </span>
+                            <hr/>
+                        </div>
+                    <% for(var i=0; i<JSON.parse(contentcom).length; i++) { %>
+                        <div class="col colek">
+                            <a href="/anime/<%= JSON.parse(contentcom)[i].link %>" class="link-post text-decoration-none" >
+                            <div class="tx-container ">
+
+                                <img src="/assets/images/PSX_20220307_131800.jpg"
+                                class="thumbnail mx-auto w-100" width="150" alt="<%= JSON.parse(contentcom)[i].judul %>"> 
+                                <!-- <img src="/assets/images/<%= JSON.parse(contentcom)[i].thumbnail %>" 
+                                class="thumbnail mx-auto w-100" width="150" alt="<%= JSON.parse(contentcom)[i].judul %>">  -->
+                                <div class="tx-top-right p-1 rounded-bottom text-white"><%= JSON.parse(contentcom)[i].type %></div>
+                                <div class="tx-bottom-left py-1"><b>Episode 1</b></div>
+                                <div class="tx-bottom-right py-1"><%= JSON.parse(contentcom)[i].score %></div>
+                                <div class="tx-centered rounded-circle"></div>
+                            </div>
+                            <p class="w-100 text-wrap text-center" style="width: 150px;height:40px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 14px;"><small><b><%- JSON.parse(contentcom)[i].judul %></b></small></p>
+                            </a>
+                        </div>
+                    <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <%- include('../partials/sidebar'); %>
+
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/footer'); %>
+
+</body>
+</html>

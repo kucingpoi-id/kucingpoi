@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head', {tmpl:'test',jsoncontent:jsoncontent,forcheck:forcheck}); %>
+</head>
+<body>
+
+<main>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <div class="container py-4 mt-5">
+        <div class="row align-items-md-stretch g-3">
+            <div class="col-md-8">
+                <div class="h-100 pt-3 pb-5 px-3 text-white bg-dark rounded-3">
+                    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-2 mt-4" id="post-anime">
+                        <div class="col w-100">
+                            <h5>Anime List</h5>
+                            <hr />
+                        </div>
+                        <% for(var i=0; i<JSON.parse(jsoncontent).length; i++) { %>
+                            <div class="col colek">
+                                <a href="/anime/<%= JSON.parse(jsoncontent)[i].link %>" class="link-post text-decoration-none" >
+                                    <div class="tx-container ">
+                                        
+                                        <img src="/assets/images/PSX_20220307_131800.jpg"
+                                    class="thumbnail mx-auto w-100" width="150" alt="<%= JSON.parse(jsoncontent)[i].judul %>"> 
+                                        <!-- <img src="/assets/images/<%= JSON.parse(jsoncontent)[i].thumbnail %>" 
+                                    class="thumbnail mx-auto w-100" width="150" alt="<%= JSON.parse(jsoncontent)[i].judul %>">  -->
+                                    <div class="tx-top-right p-1 rounded-bottom text-white"><%= JSON.parse(jsoncontent)[i].type %></div>
+                                    <div class="tx-bottom-left py-1"><b>Episode 1</b></div>
+                                    <div class="tx-bottom-right py-1"><%= JSON.parse(jsoncontent)[i].score %></div>
+                                    <div class="tx-centered rounded-circle"></div>
+                                    </div>
+                                    <p class="w-100 text-wrap text-center" style="width: 150px;height:40px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 14px;"><small><b><%= JSON.parse(jsoncontent)[i].judul %></b></small></p>
+                                </a>
+                            </div>
+                        <% dd = JSON.parse(jsoncontent)[i].id } %>
+                        <% if(dd == '') { %>
+                            NOT FOUND
+                        <% } %>
+                        <!-- LIST ANIME -->
+                    </div>
+                    <nav class="w-100 mt-5" aria-label="...">
+                        <div class="pagination pagination-sm justify-content-center mx-5">
+                        </div>
+                    </nav>
+
+                    <!-- <div id="data-container"></div>
+                    <div id="pagination-container"></div> -->
+                </div> 
+            </div>
+            
+            <%- include('../partials/sidebar'); %>
+
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/footer'); %>
+
+</body>
+</html>

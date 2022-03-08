@@ -1,71 +1,110 @@
+// load the things we need
 const express       = require('express');
-const path          = require('path')
-const session       = require('express-session');
+const path          = require('path');
 const bodyParser    = require('body-parser');
-const router        = express.Router();
-
-
-var ropath = (...data) => {
-  const routepath   = path.join(__dirname, 'routes/' + data +'.js');
-  return routepath
-}
-
-var app         = express();
-
-app.use(session({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
-app.use(bodyParser.json());      
+const app           = express();
 
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')))
-
+app.use(bodyParser.json());  
 app.use(express.urlencoded({
-    extended: true
+  extended: true
 }));
- 
-// TEST
-app.get('/home', require( ropath('home') ) );
-app.get('/anime', require( ropath('list') ) )
-app.get('/anime/:action', require( ropath('anime') ) )
-app.get('/cache/:action', require( ropath('action') ) )
-app.get('/:action', require( ropath('watch') ) )
-app.get('/w/:action', require( ropath('video') ) )
-app.get('/list/:action', require( ropath('abjad') ) )
 
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+// use res.render to load up an ejs view file
 
-app.get('/',(req,res) => {
-  // sess = req.session;
-  // if(sess.email == 'admin') {
-  //     return res.redirect('/home');
-  // }
-  res.sendFile(__dirname + '/views/index.html');
+function pfilter(params) {
+  if(params.match(/([-a-zA-Z0-9])/)) {
+    var pftr = params;
+  }
+  else {
+    var pftr = 'block';
+  }
+  return pftr;
+}
+
+// index page
+app.get('/', require('./routes/index'));
+// app.get('/', function(req, res) {
+//   res.render('layouts/index');
+// });
+
+// anime list page
+app.get('/anime', require('./routes/list'));
+app.get('/list', require('./routes/list'));
+
+// anime detail page
+app.get('/anime/:action', require('./routes/list'));
+// app.get('/anime/:action', require('./routes/detail'));
+
+// watch anime page
+app.get('/watch/:action', require('./routes/watch'));
+
+// watch anime page
+app.get('/list/:action', function(req, res) {
+  if(pfilter(req.params.action) == 'block') {
+    res.render('layouts/404');
+  }
+  else {
+    res.render('layouts/abc',{
+      paramtitle: req.params.action
+    });
+  }
 });
 
-// app.post('/login',(req,res) => {
-//   sess = req.session;
-//   if(req.body.email == 'admin' & req.body.pass == '654321'){
-//     sess.email = req.body.email;
+// genre page
+app.get('/genre/:action', function(req, res) {
+  if(pfilter(req.params.action) == 'block') {
+    res.render('layouts/404');
+  }
+  else {
+    res.render('layouts/genre',{
+      paramtitle: req.params.action
+    });
+  }
+});
 
-//     res.end('done');
-//   }
-//   else {
-//     res.end('false');
-//   }
+// season page
+app.get('/season/:action', function(req, res) {
+  // console.log(pfilter(req.params.action))
+  if(pfilter(req.params.action) == 'block') {
+    res.render('layouts/404');
+  }
+  else {
+    res.render('layouts/season',{
+      paramtitle: req.params.action
+    });
+  }
+});
 
+// popolar page
+// app.get('/popular', function(req, res) {
+//     res.render('layouts/popular');
 // });
 
-// app.get('/logout',(req,res) => {
-//   req.session.destroy((err) => {
-//       if(err) {
-//           return console.log(err);
-//       }
-//       res.redirect('/');
-//   });
+// popolar page
+app.get('/test', require('./routes/test'));
+// app.get('/test/:action', require('./routes/testpage'));
 
-// });
+// popolar page
+// app.get('/to', require('./routes/index'));
+
+
+// routes api action
+app.get('/cache/:action', require('./modules/action'));
+
+// routes api video
+app.get('/w/:action', require('./modules/video'));
+
 
 app.use(function(req,res) {
-  res.header('Content-Type', 'text/html').status(404).send('Error 404');
+  res.header('Content-Type', 'text/html').status(404).render('layouts/404');
 })
-  
 
-module.exports = app;
+
+app.listen(8080);
+console.log('8080 is the magic port');
+
+module.exports = app
